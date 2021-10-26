@@ -1,0 +1,64 @@
+{
+    "name": "EasyTravel Home Page",
+    "frequencyMin": 5,
+    "enabled": true,
+    "type": "BROWSER",
+    "createdFrom": "GUI",
+    "script": {
+      "type": "availability",
+      "version": "1.0",
+      "configuration": {
+        "device": {
+          "deviceName": "Desktop",
+          "orientation": "landscape"
+        }
+      },
+      "events": [
+        {
+          "type": "navigate",
+          "description": "Test Home Page",
+          "url": "<EASYTRAVEL_URL>",
+          "wait": {
+            "waitFor": "page_complete"
+          }
+        }
+      ]
+    },
+    "locations": [
+      "GEOLOCATION-716844F67F8B2CA0",
+      "GEOLOCATION-45AB48D9D6925ECC",
+      "GEOLOCATION-BFBE4475785D7DB7"
+    ],
+    "anomalyDetection": {
+      "outageHandling": {
+        "globalOutage": true,
+        "localOutage": false,
+        "localOutagePolicy": {
+          "affectedLocations": 1,
+          "consecutiveRuns": 3
+        },
+        "retryOnError": true
+      },
+      "loadingTimeThresholds": {
+        "enabled": false,
+        "thresholds": []
+      }
+    },
+    "tags": [
+      {
+        "source": "RULE_BASED",
+        "context": "CONTEXTLESS",
+        "key": "stage",
+        "value": "production"
+      }
+    ],
+    "managementZones": [],
+    "manuallyAssignedApps": [
+      "<APP_ID>"
+    ],
+    "keyPerformanceMetrics": {
+      "loadActionKpm": "VISUALLY_COMPLETE",
+      "xhrActionKpm": "VISUALLY_COMPLETE"
+    },
+    "events": []
+  }

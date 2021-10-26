@@ -1,0 +1,30 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: loadgenheadless
+  name: loadgenheadless
+  namespace: easytravel
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: loadgenheadless
+  strategy:
+    rollingUpdate:
+      maxSurge: 25%
+      maxUnavailable: 25%
+    type: RollingUpdate
+  template:
+    metadata:
+      labels:
+        app: loadgenheadless
+    spec:
+      containers:
+      - env:
+        - name: ET_APM_SERVER_DEFAULT
+          value: APM
+        - name: ET_ANGULAR_FRONTEND_URL
+          value: http://easytravel-angular:80            
+        image: dynatrace/easytravel-headless-loadgen:latest
+        name: angular-loadgen

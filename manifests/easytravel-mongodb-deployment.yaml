@@ -1,0 +1,31 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: easytravel-mongodb
+  namespace: easytravel
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: easytravel-mongodb
+      product: easytravel
+  template:
+    metadata:
+      labels:
+        app: easytravel-mongodb
+        product: easytravel
+        app.kubernetes.io/version: "3.0"
+        app.kubernetes.io/part-of: easytravel-angular
+      annotations:
+        support.contact: "demoability@dynatrace.com"
+        support.channel: "#team-demoability"
+    spec:
+      containers:
+      - image: dynatrace/easytravel-mongodb:2.0.0.3322
+        imagePullPolicy: "Always"
+        name: easytravel-mongodb
+        ports:
+        - containerPort: 27017
+        - containerPort: 28017
+        resources: {}
+      restartPolicy: Always
